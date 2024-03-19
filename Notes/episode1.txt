@@ -1,0 +1,241 @@
+Namaste React Notes
+
+Episode 1 - Inception
+
+part 1:
+	
+Google chrome
+Vs code
+
+created new repository : Namaste-React
+
+Recap of HTML, CSS, JS
+
+Created a basic hello world program inside html
+
+Vs code uses emmet
+	it generates some code for you
+	
+create hello world using html
+------------------------------
+
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<title>Namaste React</title>
+		</head>
+		<body>
+			<div id="root">
+				<h1>Hello World</h1>
+			</div>
+		</body>
+	</html>
+
+create hello world using JS
+------------------------------
+	
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<title>Namaste React</title>
+		</head>
+		<body>
+			<div id="root">
+				
+			</div>
+			<script>
+				const heading = document.createElement("h1");
+				heading.innerHTML = "Hello World from JavaScript!";
+				const root = document.getElementById("root");
+				root.appendChild(heading);
+			</script>
+		</body>
+	</html>
+
+Browsers can understand javascript because it uses javascript engine
+
+Basic hello world using React
+-------------------------------
+
+First way of adding react into our project is using CDN
+
+what is CDN - content delivery network
+
+these are the websites where react is hosted and we are fetching from these websites and putting in our project
+ 
+code after injecting React into our project
+
+
+<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<title>Namaste React</title>
+		</head>
+		<body>
+			<div id="root">
+				
+			</div>
+			<script
+				crossorigin
+				src="https://unpkg.com/react@18/umd/react.development.js"
+			</script>
+			<script
+				crossorigin
+				src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+			</script>
+		</body>
+	</html>
+	
+What is inside the link?
+https://unpkg.com/react@18/umd/react.development.js
+
+what is crossorigin?
+
+React at the end of the day is javascript
+
+we are importing react code from the cdn links into our project.
+
+Go to chrom browser dev tools and type react in console.
+
+we can see the js object
+
+what is second link ? react dom?
+
+react.development.js - core file
+react-dom.development.js - to manuplate the dom
+
+why differnt files? 
+react wont only works in web apps
+react also works in mobiles and other
+so we use different files
+
+==============break===========
+
+part-2
+-------------------
+now using react lets build the basic hello world program.
+
+<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<title>Namaste React</title>
+		</head>
+		<body>
+			<div id="root">
+				
+			</div>
+			<script
+				crossorigin
+				src="https://unpkg.com/react@18/umd/react.development.js"
+			</script>
+			<script
+				crossorigin
+				src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+			</script>
+			<script>
+				const heading = React.createElement("h1",{},"hello world from react"};
+				
+				const root = ReactDom.createRoot(getElementById("root"));
+				root.render(heading);
+			</script>
+		</body>
+	</html>
+	
+React.createElement
+ReactDOM.createRoot
+render
+==================================
+
+Part 3
+----------------
+
+create new javascript file to keep all the react code
+create a new file called App.js and remove the code from script tag in index.html file and add that code to app.js file
+give the src="./App.js" in script tag.
+
+The most costly operation is when dom node needs to be manipulated.
+putting or removing the doms is costly operation
+
+
+the missing object in the React.createElement is where we give attributes 
+ex: id's, classes etc
+
+add an attribute id="heading"
+add an app.css file and add color red to the id heading
+
+
+when we console the heading in the app.js 
+we can see a object
+
+const heading = React.createElement("h1",{},"hello world from react"};
+the heading is the javascript object
+the render method will render this heading to the html tag.
+
+==================================
+part 4:
+----------------------
+Html is nested structure
+
+example:
+	<div id="parent">
+		<div id="child">
+			<h1>I am an h1 tag</h1>
+		</div>
+	</div>
+	
+converting this into react
+
+	const parent = React.createElement("div",{id:"parent"},
+						React.createElement("div",{id:"child"},
+							React.createElement("h1",{},"I am an h1 tag"}}}
+		
+	root.render(parent);
+This is how you create the react nested elements
+
+ReactElement is an object 
+while it is rendering into the dom it converts to html and put it into the dom
+
+suppose we need to create sibilings inside a div
+then we have to give array of children
+example:
+	<div id="parent">
+		<div id="child">
+			<h1>I am an h1 tag</h1>
+			<h2>I am an h1 tag</h2>
+		</div>
+	</div>
+const parent = React.createElement("div",{id:"parent"},
+						React.createElement("div",{id:"child"},
+							[React.createElement("h1",{},"I am an h1 tag"},React.createElement("h2",{},"I am an h1 tag"}]}}
+		
+	root.render(parent);
+	
+	if we run this it will work but the react will through a warning for key 
+	
+	if we have more complex nested elements like this.
+	then the code becomes more complex and unreadable
+================
+To overcome this react have a feature known as JSX
+==============
+	
+part 5
+---------------------
+ will the order of script matters?
+ 
+ yes, the order of the scripts should always sequence
+ 
+ what is crossorigin?
+ 
+ root.render is putting the object in the root element
+ what if there is already some content in the root element , then what will happen?
+ 
+ the content will be replaced with the react object 
+  
+ A library and A framework
+ 
+ React is a library because it works in a part of the application
+ 
+the html tags above or below the root element will be generated, the react contnet only render in the root div 
+
+
+ 
