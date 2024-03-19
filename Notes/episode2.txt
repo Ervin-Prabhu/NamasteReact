@@ -1,0 +1,246 @@
+igniting our app
+part1
+-------------------
+is this code ready to push to production?
+no
+
+we need to bundle our code, we need to minify our code, we need to optmise our code to do production
+we need to do a lot of things
+
+when you use a create-react-app, it is already iginited
+which is already production ready
+
+in this course we will learn how to create production ready app from scrtach
+
+can react itself is 
+
+npm: 
+what is fullform of npm
+it is not node package manger
+npm does not have a full form
+npm manages packages but doesn't stand for node package manages
+
+npm is standard repository for all the packages
+biggest package manager
+libraries, utilities we need 
+
+lets add node package manager to our project
+
+npm init
+
+package name: (namaste-react)
+version: 1.0.0
+description: This is namaste react by ervin
+entry point: (App.js)
+test command: jest
+git repository: (https://github.com/namastereact
+keywords: React, namaste react, ervin
+author: Ervin Prabhu
+licence : ISC
+
+package.json
+
+it is basically configuration for the npm
+
+dependencies
+	Our project is dependent on so many packages those packages are dependednt on other packages
+	npm will take of version of the package
+	it will take care of it in this package.json
+	
+	now lets start using dependencies
+	most important package is bundler
+	
+	what is a bundler?
+	when we have these html css js files
+	our whole code needs to be minifies/compressed
+	bundler help you do this
+	
+	webpack, parcel
+	
+	bundler packages your applications so that it can be shipped to production
+	
+	create-react-app uses webpack bundler and bable
+	
+	in this course we use parcel bundler
+	
+	why parcle why not webpack or someother
+	at the end of the day all are same
+	
+	parcel is one of the best libraries
+	parcel will iginite our app
+	parcel comes as node package
+	we can install parcel to our app easily
+	
+	command : npm install -D parcel
+	
+	what is -D? 
+	there are two type of dependencies
+	1. dev 
+	2. normal
+	
+	what is dev dependency
+		when we are developing the app then we use dev dependencies
+		normal dependencies can be used in production also
+		
+		so this parcel needs only in developing so we use it as dev dependency, this is why we give -D
+		
+		parcel is a beast
+		
+		it will do a lot things to our app
+		
+		
+		we can now see the parcel in dev dependencies in package.json
+		
+		we can see "parcel: "^2.8.3"
+		
+		^ this is known as caret
+		~ tilde
+		
+		suppose tomorrow a new version parcel released 2.8.4 is release 
+		if there is caret , parcel will automatically updated to 2.8.4
+		
+		suppose there is 3.0.0 a major upgrade 
+		if there is tilde , parcle will automatically updated to major version 3.0.0 
+		
+		we have another file after installing parcel
+		that is package-lock.json
+		
+		do we need both package.json and package-lock.json files
+		
+		what is package-lock.json?
+		keeps a track of exact version that is installed
+		
+		it also maintain
+		integrity : which is a sha512 hash why need it because 
+		
+		one more thing created that is node modules which contain so many folders what are those?
+		
+		node modules contains all the code fetched from npm
+		
+		it is like database, which contain data of the dependencies
+		it is huge
+		
+		when we install parcel, the dependencies of parcel and those dependencies have their depencies
+		this is known as transitive dependencies
+		
+		every package have its own package.json in node modules folders and it has its own dependencies
+		
+		git ignore node modules
+		
+		why shoudn't we put node_modules into git?
+		
+		should i put package.json and package-lock.json
+		they maintain what all depencies our project needs.
+
+		if i can have package.json and package-lock.json i can recreate all my node modules so it need not be push to git
+		
+		what ever you can regenrate dont put it on git
+		
+		if nor caret or tilde then ther will be no minor or major update of dependency
+		
+		if you do npm install, then it will install all the node modules
+		==========================================
+		
+		part2
+		----------------
+		iginiting or app by running below command
+		command : npx parcel index.html
+		
+		server running at localhost:1234
+		
+		it created a server for us
+		
+		our app is now hosted in a server
+		
+		what is npx?
+		just like we have npm, similiarly we have npx
+		npm installs a package
+		npx executes that package
+		
+		when we do npx parcel index.html
+		parcel goes to index.html and build developement app
+		
+		another way to get react into our app is using npm
+		react is a package
+		
+		CDN links are not good way to bring react into our app
+		fetching from cdn is costly operation
+		today it react@18
+		but if tomorrow we have other version then we have to update the links
+		
+		so we use npm react package
+		
+		commands: npm install react
+		
+		we are not writing -d , because react is normal dependency
+		
+		now lets install react-dom
+		
+		command npm i react-dom
+		
+		now we longer need the CDN links
+		
+		our applications gives an error
+		we just installed react we are not using it
+		so we need to import react in app.js
+		otherwise it gives an error React is not defined
+		
+		same way we need to import ReactDom
+		
+		after this if we run the application we again get an error saying that 
+		broswer scripts cannot have imports and exports
+		
+		the script in index.js considering it as normal browsing script
+		we need to tell the browser that it is not a browser script, by keeping type="module"
+		
+		when i update something and save the file our browser will automatically changed
+		
+		this powerful thing is done by parcel
+		
+		#parcel
+			- Dev build
+			- local server
+			- HMR -Hot Module Replacement
+			- File watching algorithm
+					parcel uses a file watching algorithm 
+					it is written in c++
+			  as soon we save it is building again
+			- Caching - faster builds 
+			- Image optimizaion
+			- Minification
+			- Bundling
+			- Compress
+			- Consistent Hashing
+			- Code spliting
+			- Differential Bundling
+				app can be old web brosers, mobile browsers , new browsers to run app smoothly support all browsers
+			- Diagnostics
+			- Error Handling
+			- HTTPs
+			= Tree Shaking
+				remove unused code  
+			- Different dev and prod bundles
+			-
+			
+		Parcel documentatin- parcelljs.org
+		
+		production buildc
+		command: npx parcel build index.html
+		we get error because in package.json entry point as app.js
+		but in command we are giving index.js
+		remove the main: app.js in package.json and try again
+		
+		it will minify and kept in dist file
+		
+		Browsers list
+		-------------
+		it is an npm package
+		inside package.json
+		
+		"browsersList" :[
+			"last 2 chrome version",
+			"last 2 firefox version"
+		]
+
+
+
